@@ -1,6 +1,6 @@
 package com.mainApp;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.mainApp.config.AppConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 public class Main {
@@ -11,5 +11,8 @@ public class Main {
 
         // usa beans aqui
         context.close();
+        String a = String.format("CONTEXT: %s", context);
+        System.out.println(a);
+        System.out.println("Aplicacao finalizada com sucesso!");
     }
 }

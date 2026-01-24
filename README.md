@@ -16,6 +16,7 @@ Invoke-Expression (
 ).Content
 
 jabba install openjdk@1.17.0
+jabba install maven@3.9.9
 ## Or if you prefer to only temporarily set java version:
 jabba use 
 ```
