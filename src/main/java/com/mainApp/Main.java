@@ -5,7 +5,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.File;
 
@@ -14,7 +14,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
+
+        String port = Dotenv.load().get("PORT");
+        if (port != null) {
+            tomcat.setPort(Integer.parseInt(port));
+        }
 
         tomcat.getConnector(); // triggers connector creation
 
