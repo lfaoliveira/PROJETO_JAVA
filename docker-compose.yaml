@@ -1,0 +1,48 @@
+services:
+  places-backend:
+    image: alpine/java:17-jdk
+    container_name: backend
+    restart: unless-stopped
+    networks:
+      - projeto
+    ports:
+      - "5678:5678"
+    build:
+      context: .
+      dockerfile: ./docker/back.dockerfile
+    command: "java -jar PROJETO_JAVA-0.0.1.jar"
+    volumes:
+      - ./root/places:/app
+    env_file:
+      - .env
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - projeto
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:18-alpine
+    volumes:
+      - db:/data/db
+    networks:
+      - projeto
+    restart: unless-stopped
+
+
+networks:
+  projeto:
+    driver: bridge
+
+volumes:
+  db:
+  backend:
+  frontend:
