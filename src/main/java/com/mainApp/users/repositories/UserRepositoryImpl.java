@@ -1,6 +1,6 @@
-package com.mainApp.repositories;
+package com.mainApp.users.repositories;
 
-import com.mainApp.models.User;
+import com.mainApp.users.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

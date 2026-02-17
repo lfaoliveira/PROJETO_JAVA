@@ -1,7 +1,5 @@
-package com.mainApp.models;
+package com.mainApp.users.models;
 
-
-import java.util.Optional;
 
 public class User {
 

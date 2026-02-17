@@ -1,7 +1,7 @@
-package com.mainApp.services;
+package com.mainApp.users.services;
 
-import com.mainApp.models.User;
-import com.mainApp.repositories.UserRepository;
+import com.mainApp.users.models.User;
+import com.mainApp.users.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
