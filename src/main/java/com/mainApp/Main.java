@@ -5,7 +5,8 @@ import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import io.github.cdimascio.dotenv.Dotenv;
+
+import com.mainApp.config.Secrets;
 
 import java.io.File;
 
@@ -14,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
-
-        String port = Dotenv.load().get("PORT");
+        Secrets secrets = new Secrets();
+        String port = secrets.get("PORT");
         if (port != null) {
             tomcat.setPort(Integer.parseInt(port));
         }
