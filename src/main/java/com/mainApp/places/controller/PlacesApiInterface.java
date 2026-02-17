@@ -1,5 +1,5 @@
 package com.mainApp.places.controller;
 
-public interface ApiInterface {
+public interface PlacesApiInterface {
 
 }

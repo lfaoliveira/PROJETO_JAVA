@@ -12,17 +12,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class ApiController implements ApiInterface {
-    public ApiController() {
+public class PlacesApiController implements PlacesApiInterface {
+    public PlacesApiController() {
     }
 
     @Autowired
-    private QueryService dinerService;
+    private QueryService queryService;
 
-    // Example call: /api/diners?loc=-23.5505,-46.6333 (São Paulo)
-    @GetMapping("/diners")
+    // Example call: /api/places?loc=-23.5505,-46.6333 (São Paulo)
+    @GetMapping("/places")
     public List<Place> search(@RequestParam String loc) {
-        return dinerService.getNearyPlaces(loc);
+        return queryService.getNearyPlaces(loc);
     }
 
 }

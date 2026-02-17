@@ -7,18 +7,17 @@ import java.util.Set;
 
 
 public class Secrets {
-    final Dotenv entries;
+    private static Dotenv entries;
 
-    public Secrets() {
-        this.entries = Dotenv.load();
+    private Secrets() {
+
     }
 
-    public String get(String key) {
+    public static String get(String key) {
+        if (entries == null) {
+            entries = Dotenv.load();
+        }
         return entries.get(key);
-    }
-
-    public Dotenv getEntries() {
-        return entries;
     }
 
 }

@@ -8,17 +8,16 @@ import com.mainApp.places.data.Place;
 
 import java.util.Collections;
 import java.util.List;
-
+import com.mainApp.config.Secrets;
 @Service
 public class QueryService {
     private final String API_KEY;
 
-    public QueryService(String API_KEY) {
-        this.API_KEY = API_KEY;
+    public QueryService() {
+        this.API_KEY = Secrets.get("PLACES_API_KEY");
     }
 
     private final RestTemplate restTemplate = new RestTemplate();
-    // private final String API_KEY = "YOUR_GOOGLE_API_KEY";
 
     public List<Place> getNearyPlaces(String location) {
         String url = String.format(

@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
-        Secrets secrets = new Secrets();
-        String port = secrets.get("PORT");
+
+        String port = Secrets.get("PORT");
         if (port != null) {
             tomcat.setPort(Integer.parseInt(port));
         }
