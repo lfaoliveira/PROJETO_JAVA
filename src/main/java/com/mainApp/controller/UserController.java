@@ -1,6 +1,6 @@
-package com.mainApp.users.controllers;
+package com.mainApp.controller;
 
-import com.mainApp.users.models.User;
+import com.mainApp.model.dto.User;
 import com.mainApp.users.services.UserService;
 import org.springframework.web.bind.annotation.*;
 

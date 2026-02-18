@@ -1,4 +1,4 @@
-package com.mainApp.movies.controller;
+package com.mainApp.controller;
 
 public interface MoviesApiInterface {
 

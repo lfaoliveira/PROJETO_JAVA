@@ -1,6 +1,6 @@
 package com.mainApp.users.repositories;
 
-import com.mainApp.users.models.User;
+import com.mainApp.model.dto.User;
 
 import java.util.List;
 

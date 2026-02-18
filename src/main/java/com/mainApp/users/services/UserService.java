@@ -1,6 +1,6 @@
 package com.mainApp.users.services;
 
-import com.mainApp.users.models.User;
+import com.mainApp.model.dto.User;
 import com.mainApp.users.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 

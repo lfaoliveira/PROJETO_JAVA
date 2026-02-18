@@ -1,9 +1,9 @@
-package com.mainApp.movies.service;
+package com.mainApp.service;
 
-import com.mainApp.movies.data.MovieResponse;
+import com.mainApp.data.MovieResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import com.mainApp.movies.data.Place;
+import com.mainApp.data.Movie;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +21,7 @@ public class QueryService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public List<Place> getNearyPlaces(String location) {
+    public List<Movie> getNearyPlaces(String location) {
 
         String url = "";
         MovieResponse response = restTemplate.getForObject(url, MovieResponse.class);

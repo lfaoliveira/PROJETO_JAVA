@@ -1,4 +1,4 @@
-package com.mainApp.movies.data;
+package com.mainApp.data;
 
 public interface MovieResponseInterface {
 }
