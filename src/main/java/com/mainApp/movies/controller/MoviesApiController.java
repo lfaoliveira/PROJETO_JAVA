@@ -1,7 +1,7 @@
-package com.mainApp.places.controller;
+package com.mainApp.movies.controller;
 
-import com.mainApp.places.data.Place;
-import com.mainApp.places.service.QueryService;
+import com.mainApp.movies.data.Place;
+import com.mainApp.movies.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class PlacesApiController implements PlacesApiInterface {
-    public PlacesApiController() {
+public class MoviesApiController implements MoviesApiInterface {
+    public MoviesApiController() {
+    }
+
+    @GetMapping("/examples")
+    public List<Object> getExamples() {
+        return List.of(new Place("Example Diner", "123 Main St", 4.5));
     }
 
     @Autowired
