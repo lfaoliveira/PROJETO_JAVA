@@ -1,7 +1,7 @@
 package com.mainApp.controller;
 
-import com.mainApp.data.Movie;
-import com.mainApp.service.QueryService;
+import com.mainApp.model.dto.MovieDto;
+import com.mainApp.service.TmdbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +14,16 @@ public class MoviesApiController implements MoviesApiInterface {
     }
 
     @GetMapping("/")
-    public List<Object> getExamples() {
-        return List.of(new Movie("Example Diner", "123 Main St", 4.5));
+    public List<MovieDto> getExamples() {
+        return List.of(new MovieDto("Example Diner", "123 Main St", 4.5));
     }
 
     @Autowired
-    private QueryService queryService;
+    private TmdbService queryService;
 
     // Example call: /api/places?loc=-23.5505,-46.6333 (São Paulo)
     @GetMapping("/movies/{loc}")
-    public List<Movie> search(@PathVariable String loc) {
+    public List<MovieDto> search(@PathVariable String loc) {
         return queryService.getNearyPlaces(loc);
     }
 

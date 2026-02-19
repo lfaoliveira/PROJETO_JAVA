@@ -1,32 +1,27 @@
 package com.mainApp.service;
 
-import com.mainApp.data.MovieResponse;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import com.mainApp.data.Movie;
-
-import java.util.Collections;
-import java.util.List;
-
+import com.mainApp.client.MovieApiClient;
+import com.mainApp.client.MovieResponse;
 import com.mainApp.config.Secrets;
+import org.springframework.stereotype.Service;
 
 
 @Service
 public class QueryService {
-    private final String API_KEY;
 
-    public QueryService() {
-        this.API_KEY = Secrets.get("PLACES_API_KEY");
+    private final MovieApiClient movieApiClient;
+    private final Secrets secrets; // Assuming this holds your API Key
+
+    public QueryService(MovieApiClient movieApiClient, Secrets secrets) {
+        this.movieApiClient = movieApiClient;
+        this.secrets = secrets;
     }
 
-    private final RestTemplate restTemplate = new RestTemplate();
-
-    public List<Movie> getNearyPlaces(String location) {
-
-        String url = "";
-        MovieResponse response = restTemplate.getForObject(url, MovieResponse.class);
-        System.out.println("response: " + response);
-        return response != null ? response.results() : Collections.emptyList();
+    public void processMovieData(String movieId) {
+        String apiTokenKey = Secrets.keys.TMDB_API_KEY.name();
+        MovieResponse data = movieApiClient.getMovieDetails(movieId, secrets.get(apiTokenKey));
+        // Do something with the data...
+        System.out.println("Fetched: " + data.getTitle());
     }
 }
 
