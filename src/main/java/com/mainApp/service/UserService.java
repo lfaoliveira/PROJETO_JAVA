@@ -1,7 +1,7 @@
-package com.mainApp.users.services;
+package com.mainApp.service;
 
 import com.mainApp.model.dto.User;
-import com.mainApp.users.repositories.UserRepository;
+import com.mainApp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

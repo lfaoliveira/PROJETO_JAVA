@@ -1,4 +1,4 @@
-package com.mainApp.users.repositories;
+package com.mainApp.repository;
 
 import com.mainApp.model.dto.User;
 
