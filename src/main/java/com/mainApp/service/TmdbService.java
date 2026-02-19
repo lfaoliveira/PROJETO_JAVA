@@ -1,6 +1,5 @@
 package com.mainApp.service;
 
-import com.mainApp.model.dto.TMDBResponseDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
