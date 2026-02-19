@@ -1,16 +1,47 @@
 package com.mainApp.repository;
 
-import com.mainApp.model.dto.User;
+import com.mainApp.model.entity.UserEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface UserRepository {
+@Repository
+@Transactional
+public class UserRepository implements UserRepositoryInterface {
 
-    List<User> findAll();
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    User findById(Long id);
+    @Override
+    public List<UserEntity> findAll() {
+        return entityManager
+                .createQuery("from UserEntity", UserEntity.class)
+                .getResultList();
+    }
 
-    User save(User user);
+    @Override
+    public UserEntity findById(Long id) {
+        return entityManager.find(UserEntity.class, id);
+    }
 
-    void delete(Long id);
+    @Override
+    public UserEntity save(UserEntity user) {
+        if (user.getId() == null) {
+            entityManager.persist(user);
+            return user;
+        } else {
+            return entityManager.merge(user);
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        UserEntity user = findById(id);
+        if (user != null) {
+            entityManager.remove(user);
+        }
+    }
 }

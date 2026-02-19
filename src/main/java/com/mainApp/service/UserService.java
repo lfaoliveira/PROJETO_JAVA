@@ -1,6 +1,6 @@
 package com.mainApp.service;
 
-import com.mainApp.model.dto.User;
+import com.mainApp.model.entity.UserEntity;
 import com.mainApp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +15,19 @@ public class UserService {
         this.repository = repository;
     }
 
-    public List<User> getAll() {
+    public List<UserEntity> getAll() {
         return repository.findAll();
     }
 
-    public User getById(Long id) {
+    public UserEntity getById(Long id) {
         return repository.findById(id);
     }
 
-    public User create(User user) {
+    public UserEntity create(UserEntity user) {
         return repository.save(user);
     }
 
-    public User update(Long id, User user) {
+    public UserEntity update(Long id, UserEntity user) {
         user.setId(id);
         return repository.save(user);
     }

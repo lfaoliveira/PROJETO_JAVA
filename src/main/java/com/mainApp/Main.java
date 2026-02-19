@@ -1,12 +1,12 @@
 package com.mainApp;
 
 import com.mainApp.config.AppConfig;
+import com.mainApp.config.DBSpec;
+import com.mainApp.config.Secrets;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import com.mainApp.config.Secrets;
 
 import java.io.File;
 
@@ -35,6 +35,7 @@ public class Main {
                 new DispatcherServlet(
                         new AnnotationConfigWebApplicationContext() {{
                             register(AppConfig.class);
+                            register(DBSpec.class);
                         }}
                 )
         ).setLoadOnStartup(1);

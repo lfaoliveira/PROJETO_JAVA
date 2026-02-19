@@ -1,6 +1,6 @@
 package com.mainApp.controller;
 
-import com.mainApp.model.dto.User;
+import com.mainApp.model.entity.UserEntity;
 import com.mainApp.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,23 +17,23 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAll() {
+    public List<UserEntity> getAll() {
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
+    public UserEntity getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @PostMapping
-    public User create(@RequestBody User user) {
+    public UserEntity create(@RequestBody UserEntity user) {
         return service.create(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Long id,
-                       @RequestBody User user) {
+    public UserEntity update(@PathVariable Long id,
+                             @RequestBody UserEntity user) {
         return service.update(id, user);
     }
 
