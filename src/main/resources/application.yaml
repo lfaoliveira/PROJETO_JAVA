@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:tmdb_data.db
+    driver-class-name: org.sqlite.JDBC
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis # O Boot já entende que deve usar Redis se a dependência estiver no classpath

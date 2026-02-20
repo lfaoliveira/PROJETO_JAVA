@@ -3,7 +3,6 @@ package com.mainApp.config;
 import jakarta.persistence.EntityManagerFactory;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -16,7 +15,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.mainApp")
+//@ComponentScan(basePackages = "com.mainApp")
 //@EnableJpaRepositories(basePackages = "com.mainApp.repository")
 public class DBSpec {
     @Bean

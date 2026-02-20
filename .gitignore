@@ -5,3 +5,4 @@ out/*
 target
 *.env
 dependency-reduced-pom.xml
+*.db
