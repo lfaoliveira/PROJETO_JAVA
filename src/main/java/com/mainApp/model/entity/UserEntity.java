@@ -1,7 +1,6 @@
 package com.mainApp.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -9,6 +8,8 @@ import lombok.Data;
 @Table(name = "users")
 @Data
 public class UserEntity {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String sessionId;
 }

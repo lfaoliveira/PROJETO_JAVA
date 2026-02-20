@@ -1,12 +1,15 @@
 package com.mainApp.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
 
 @Entity
 @Table(name = "genres")
+@Data
 public class GenreEntity {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
 }

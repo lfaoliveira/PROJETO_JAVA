@@ -17,8 +17,8 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.mainApp")
+//@EnableJpaRepositories(basePackages = "com.mainApp.repository")
 public class DBSpec {
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -38,7 +38,6 @@ public class DBSpec {
         factory.setPackagesToScan("com.mainApp.model.entity");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setJpaProperties(hibernateProperties());
 

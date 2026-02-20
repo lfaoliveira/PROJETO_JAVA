@@ -36,6 +36,7 @@ public class Main {
                         new AnnotationConfigWebApplicationContext() {{
                             register(AppConfig.class);
                             register(DBSpec.class);
+                            scan("com.mainApp");
                         }}
                 )
         ).setLoadOnStartup(1);
