@@ -11,7 +11,7 @@ Invoke-Expression (
   Invoke-WebRequest https://github.com/shyiko/jabba/raw/master/install.ps1 -UseBasicParsing
 ).Content
 jabba install openjdk@1.17.0
-jabba use 
+jabba use openjdk@1.17.0
 ```
 ## Run Maven Wrapper to build the project:
 ``./mvnw clean package``

@@ -1,6 +1,6 @@
 package com.mainApp.controller;
 
-import com.mainApp.model.dto.MovieDto;
+import com.mainApp.model.dto.TmdbMovieDto;
 import com.mainApp.service.MovieApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +25,11 @@ public class MoviesApiController implements MoviesApiInterface {
     @Autowired
     private MovieApiService queryService;
 
-    // Example call: /api/places?loc=-23.5505,-46.6333 (São Paulo)
-    @GetMapping("/movies/{loc}")
-    public List<MovieDto> search(@PathVariable String loc) {
-        List<MovieDto> movies = List.of(queryService.getMovieDetails(loc));
+    // Example call: /api/movies?name=Star Wars
+    @GetMapping("/movies/{name}")
+    public List<TmdbMovieDto> search(@PathVariable String name) {
+        String language = "en-US"; // Default language
+        List<TmdbMovieDto> movies = List.of(queryService.getMovieByName(name, language));
         return movies;
     }
 
