@@ -2,20 +2,13 @@ package com.mainApp.model.mapper;
 
 import com.mainApp.model.dto.TmdbMovieDto;
 import com.mainApp.model.entity.MovieEntity;
-import org.jetbrains.annotations.NotNull;
+import org.mapstruct.Mapper;
 
-import java.time.LocalDate;
+@Mapper(componentModel = "spring")
+public interface MovieMapper {
+    // Converte Entidade para DTO
+    TmdbMovieDto toDTO(MovieEntity movie);
 
-public class MovieMapper {
-
-    public static MovieEntity toDomain(@NotNull TmdbMovieDto dto) {
-
-        return new MovieEntity(
-                dto.getId(),
-                dto.getTitle(),
-                dto.getOverview(),
-                LocalDate.parse(dto.getRelease_date()),
-                dto.getVote_average()
-        );
-    }
+    // Converte DTO para Entidade
+    MovieEntity toEntity(TmdbMovieDto movieDTO);
 }

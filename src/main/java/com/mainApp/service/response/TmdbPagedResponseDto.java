@@ -8,5 +8,5 @@ public record TmdbPagedResponseDto(
         int page,
         List<TmdbMovieDto> results,
         int total_pages,
-        int total_results) {
-}
+        int total_results
+) {}
