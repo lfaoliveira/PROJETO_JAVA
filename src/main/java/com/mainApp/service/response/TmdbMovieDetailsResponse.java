@@ -1,10 +1,10 @@
-package com.mainApp.service;
+package com.mainApp.service.response;
 
 import com.mainApp.model.entity.*;
 
 import java.util.List;
 
-public record MovieApiResponse(
+public record TmdbMovieDetailsResponse(
         Integer id,
         boolean adult,
         String backdropPath,

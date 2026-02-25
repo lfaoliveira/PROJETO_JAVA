@@ -1,7 +1,7 @@
 package com.mainApp.service;
 
 import com.mainApp.config.Secrets;
-import com.mainApp.model.dto.TmdbMovieDto;
+import com.mainApp.service.response.TmdbSearchMovieResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -21,18 +21,18 @@ public class MovieApiService {
         this.restClient = builder.baseUrl(baseUrl).build();
     }
 
-    public TmdbMovieDto getMovieByName(String movieName, String language) {
+    public TmdbSearchMovieResponse getMovieByName(String movieName, String language, String page) {
         return restClient.get()
-                .uri("query={movieName}&include_adult=false&language={language}&page=1", movieName, language)
+                .uri("query={movieName}&include_adult=false&language={language}&page={page}", movieName, language, page)
                 .header("Authorization", "Bearer " + this.ApiKey)
                 .retrieve()
-                .body(TmdbMovieDto.class); // Automatically maps JSON to your DTO
+                .body(TmdbSearchMovieResponse.class); // Automatically maps JSON to your DTO
     }
 
-    public TmdbMovieDto getMovieById(String movieId) {
+    public TmdbSearchMovieResponse getMovieById(String movieId) {
         return restClient.get()
                 .uri("/movie/{id}?api_key={key}", movieId, this.ApiKey)
                 .retrieve()
-                .body(TmdbMovieDto.class); // Automatically maps JSON to your DTO
+                .body(TmdbSearchMovieResponse.class); // Automatically maps JSON to your DTO
     }
 }
