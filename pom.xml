@@ -34,13 +34,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
+        <!-- MapStruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.5.5.Final</version>
             <scope>compile</scope>
         </dependency>
+
+
 
         <!-- Hibernate -->
         <dependency>
@@ -93,6 +95,14 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- WireMock Standalone (no Jetty conflicts) -->
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8-standalone</artifactId>
+            <version>2.35.0</version>
             <scope>test</scope>
         </dependency>
 
