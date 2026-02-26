@@ -8,3 +8,7 @@ spring:
       port: 6379
   cache:
     type: redis # O Boot já entende que deve usar Redis se a dependência estiver no classpath
+  logging:
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"

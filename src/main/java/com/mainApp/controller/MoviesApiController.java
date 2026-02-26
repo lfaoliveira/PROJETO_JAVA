@@ -1,13 +1,9 @@
 package com.mainApp.controller;
 
-import com.mainApp.model.dto.TmdbResumedMovieDto;
 import com.mainApp.service.MovieApiService;
 import com.mainApp.service.response.TmdbSearchMovieResponse;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")

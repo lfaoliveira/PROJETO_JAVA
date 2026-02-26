@@ -1,15 +1,15 @@
 package com.mainApp.model.mapper;
 
-import com.mainApp.model.dto.TmdbResumedMovieDto;
+import com.mainApp.model.dto.TmdbSearchMovieDto;
 import com.mainApp.model.entity.MovieEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface MovieMapper {
     // Converte Entidade para DTO
-    MovieEntity toEntity(TmdbResumedMovieDto movieDTO);
+    MovieEntity toEntity(TmdbSearchMovieDto movieDTO);
 
     // Converte DTO para Entidade
-    TmdbResumedMovieDto toDTO(MovieEntity movie);
+    TmdbSearchMovieDto toDTO(MovieEntity movie);
 
 }

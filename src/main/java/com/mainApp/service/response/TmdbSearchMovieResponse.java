@@ -1,12 +1,13 @@
 package com.mainApp.service.response;
 
-import com.mainApp.model.dto.TmdbResumedMovieDto;
+import com.mainApp.model.dto.TmdbSearchMovieDto;
 
 import java.util.List;
 
 public record TmdbSearchMovieResponse(
         int page,
-        List<TmdbResumedMovieDto> results,
+        List<TmdbSearchMovieDto> results,
         int total_pages,
         int total_results
-) {}
+) {
+}

@@ -1,40 +1,33 @@
 package com.mainApp.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvEntry;
-import org.springframework.cache.Cache;
-
-import java.util.Set;
 
 
-public class Secrets {
-    private static Dotenv entries;
+public enum Secrets {
 
-    public enum keys {
-        PORT,
-        TMDB_API_KEY,
-        BACKEND_SECRET
-    }
+    INSTANCE;
 
-    public Secrets() {
+    private final Dotenv entries;
+
+    Secrets() {
         entries = Dotenv.load();
     }
 
     public String get(String key, String defaultValue) {
-        boolean validKey = isValidKey(key);
-        if (!validKey) {
+        if (!isValidKey(key)) {
             throw new IllegalArgumentException("Invalid key: " + key);
         }
 
-        if (entries.get(key) != null) {
-            return entries.get(key);
-        } else {
-            return defaultValue;
-        }
+        String value = entries.get(key);
+        return value != null ? value : defaultValue;
+    }
+
+    public String get(String key) {
+        return get(key, null);
     }
 
     public static boolean isValidKey(String key) {
-        for (keys k : keys.values()) {
+        for (Keys k : Keys.values()) {
             if (k.name().equals(key)) {
                 return true;
             }
@@ -42,8 +35,10 @@ public class Secrets {
         return false;
     }
 
-    public String get(String key) {
-        return get(key, null);
+    public enum Keys {
+        PORT,
+        TMDB_API_KEY,
+        BACKEND_SECRET
     }
-
 }
+
