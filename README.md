@@ -1,4 +1,4 @@
-# Projeto pessoal para criação de aplicação completa com Spring Framework
+# Spring Boot Project for Java 17
 
 
 ## Run project (Needs Java installed):

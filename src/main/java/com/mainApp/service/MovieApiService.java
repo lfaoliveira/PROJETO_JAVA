@@ -20,15 +20,13 @@ public class MovieApiService {
         String apiTokenKey = Secrets.Keys.TMDB_API_KEY.name();
 
         this.ApiKey = Secrets.INSTANCE.get(apiTokenKey);
-        baseUrl = "https://api.themoviedb.org/3/search/movie";
-        this.restClient = builder.baseUrl(baseUrl).build();
+        baseUrl = "https://api.themoviedb.org/3";
+        this.restClient = builder.build();
     }
 
     public TmdbSearchMovieResponse getMovieByName(String movieName, String language, String page) {
-        String uri = "query={movieName}&include_adult=false&language={language}&page={page}";
-
         return restClient.get()
-                .uri("?query={movieName}&include_adult=false&language={language}&page={page}", movieName, language, page)
+                .uri("/search/movie?query={movieName}&include_adult=false&language={language}&page={page}", movieName, language, page)
                 .header("Authorization", "Bearer " + this.ApiKey)
                 .retrieve()
                 .body(TmdbSearchMovieResponse.class); // Automatically maps JSON to your DTO

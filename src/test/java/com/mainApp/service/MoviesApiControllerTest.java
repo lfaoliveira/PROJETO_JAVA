@@ -36,8 +36,6 @@ public class MoviesApiControllerTest {
                 .baseUrl(baseUrl)
                 .defaultHeader("Authorization", "Bearer " + test_api_key);
 
-        log.info("API KEY: {}", test_api_key);
-
         movieService = new MovieApiService(builder);
     }
 
@@ -62,9 +60,8 @@ public class MoviesApiControllerTest {
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody(jsonContent)));
-        log.info("BEFORE RESPONSE:");
         TmdbSearchMovieResponse response = movieService.getMovieByName("Star Wars", "en-US", "1");
-        log.info("RESPONSE: {} {}", response, "\n");
+
 
         // Validações de schema básicas
         assertThat(response).isNotNull();
@@ -72,7 +69,7 @@ public class MoviesApiControllerTest {
         assertThat(response.results()).isNotNull().isNotEmpty();
         assertThat(response.total_pages()).isPositive();
         assertThat(response.total_results()).isPositive();
-
+        log.info("Response Schema OK");
         // Valida estrutura dos resultados
         response.results().forEach(movie -> {
             assertThat(movie.id()).isPositive();
@@ -81,5 +78,6 @@ public class MoviesApiControllerTest {
 
         verify(getRequestedFor(urlPathEqualTo("/search/movie"))
                 .withQueryParam("query", equalTo("Star Wars")));
+        log.info("Test OK");
     }
 }
