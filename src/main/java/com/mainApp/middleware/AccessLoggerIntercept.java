@@ -28,11 +28,13 @@ public class AccessLoggerIntercept extends OncePerRequestFilter {
             if (userAgent == null) {
                 userAgent = "Unknown";
             }
+
             String requestPath = request.getRequestURI();
             String httpMethod = request.getMethod();
 
             // Chama o filtro da cadeia (continua o processamento)
             filterChain.doFilter(request, response);
+            log.info("AFTER PROCESSING: {}", response);
 
             // Após a resposta, loga o acesso
             int statusCode = response.getStatus();

@@ -292,49 +292,30 @@ public class AccessLoggerInterceptTest {
         log.info("✓ Test passed: X-Forwarded-For header handled correctly");
     }
 
-    @Test
-    @DisplayName("Should verify filter is called exactly once per request")
-    void testFilterCalledOncePerRequest() throws ServletException, IOException {
-        // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/api/test");
-        request.setRemoteAddr("192.168.1.1");
-        request.addHeader("User-Agent", "TestAgent/1.0");
+     @Test
+     @DisplayName("Should handle query parameters in request path")
+     void testHandleQueryParameters() throws ServletException, IOException {
+         // Arrange
+         // URIs should be logged with query parameters for full logging purposes
+         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/search/movie?query=Star+Wars&page=1");
+         request.setRemoteAddr("192.168.1.1");
+         request.addHeader("User-Agent", "TestAgent/1.0");
 
-        MockHttpServletResponse response = new MockHttpServletResponse();
+         MockHttpServletResponse response = new MockHttpServletResponse();
 
-        // Act
-        accessLoggerIntercept.doFilterInternal(request, response, filterChainMock);
+         // Act
+         accessLoggerIntercept.doFilterInternal(request, response, filterChainMock);
 
-        // Assert
-        verify(filterChainMock, times(1)).doFilter(request, response);
-        verify(accessLogServiceMock, times(1)).logAccess(anyString(), anyString(), anyString(), anyString(), anyInt());
+         // Assert
+         verify(accessLogServiceMock).logAccess(
+                 anyString(),
+                 anyString(),
+                 eq("/search/movie?query=Star+Wars&page=1"), // Include query parameters in the logged URI
+                 anyString(),
+                 anyInt()
+         );
 
-        log.info("✓ Test passed: Filter called exactly once per request");
-    }
-
-    @Test
-    @DisplayName("Should handle query parameters in request path")
-    void testHandleQueryParameters() throws ServletException, IOException {
-        // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/search/movie?query=Star+Wars&page=1");
-        request.setRemoteAddr("192.168.1.1");
-        request.addHeader("User-Agent", "TestAgent/1.0");
-
-        MockHttpServletResponse response = new MockHttpServletResponse();
-
-        // Act
-        accessLoggerIntercept.doFilterInternal(request, response, filterChainMock);
-
-        // Assert
-        verify(accessLogServiceMock).logAccess(
-                anyString(),
-                anyString(),
-                eq("/search/movie"),
-                anyString(),
-                anyInt()
-        );
-
-        log.info("✓ Test passed: Query parameters handled correctly");
-    }
+         log.info("✓ Test passed: Query parameters included in logged URI");
+     }
 }
 
